@@ -7,7 +7,7 @@ public static void main(String[] args) {
 	int cond=1;
 	Scanner input = new Scanner(System.in);
 	while (cond == 1) {
-		AddressBookManagerImplementation addressbookmanager = new AddressBookManagerImplementation();
+		AddressBookManagerImp addressbookmanager = new AddressBookManagerImp();
 		System.out.println("Address Book:"
 				+ "1) Create new Addressbook"
 				+ "2) Open Addressbook"

@@ -4,13 +4,13 @@ public class Person {
 	//attributes
 	  String firstname;  
 	  String lastname;
-	  long phonenumber;
+	  String phonenumber;
 	  String city;
 	  String state;
-	  int zipcode;
+	  String zipcode;
 
 	  //constructor
-	  public Person(String firstname, String lastname, long phonenumber, String city, String state, int zipcode) {
+	  public Person(String firstname, String lastname, String phonenumber, String city, String state, String zipcode) {
 	    this.firstname = firstname;
 	    this.lastname = lastname;
 	    this.phonenumber = phonenumber;
@@ -20,8 +20,7 @@ public class Person {
 	  }
 	  
 	  public String toString() { 
-		  return "Name:" + firstname +" "+ lastname + "\n" 
-		  		+ "Phone:" + phonenumber "\n"
+		 return "Name:"+firstname+ " " +lastname+ "Phone:" + phonenumber + "City:" + city + "State:" + state +"Zipcode:" + zipcode;
 	  }
 
 }
