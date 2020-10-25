@@ -42,16 +42,51 @@ class AddressBookImp implements AddressBookInterface {
 			String personName = addressbook.get(i).firstname;
 			if (name.equals(personName)) {
 				isfound = true;
+				System.out.println(""
+						+ "1) Phonenumber"
+						+ "2) city"
+						+ "3) state"
+						+ "4) zipcode"
+						+ "5) Quit");
+				System.out.println("Select an option to edit: ");
+				int num = n.nextInt();
+				switch (num) {
+				case 1:
 				addressbook.remove(i);
-				System.out.println("Enter new number:");
-				String num = n.nextLine();
-				Person p = new Person(num, num, num, num, num, num);
+				System.out.println("Enter new value:");
+				String nu = n.nextLine();
+				Person p = new Person(name, addressbook.get(i).lastname, nu, addressbook.get(i).city, addressbook.get(i).state, addressbook.get(i).zipcode);
 				addressbook.add(p);
+				break;
+				case 2:
+					addressbook.remove(i);
+					System.out.println("Enter new value:");
+					String n1 = n.nextLine();
+					Person p1 = new Person(name, addressbook.get(i).lastname, addressbook.get(i).phonenumber, n1, addressbook.get(i).state, addressbook.get(i).zipcode);
+					addressbook.add(p1);
+					break;
+				case 3:
+					addressbook.remove(i);
+					System.out.println("Enter new value:");
+					String n2 = n.nextLine();
+					Person p2= new Person(name, addressbook.get(i).lastname, addressbook.get(i).phonenumber, addressbook.get(i).city, n2, addressbook.get(i).zipcode);
+					addressbook.add(p2);
+					break;
+				case 4:
+					addressbook.remove(i);
+					System.out.println("Enter new value:");
+					String n3 = n.nextLine();
+					Person p3 = new Person(name, addressbook.get(i).lastname, addressbook.get(i).phonenumber, addressbook.get(i).city, addressbook.get(i).state, n3);
+					addressbook.add(p3);
+					break;
+				case 5:
+					break;
+				}
 			}
-		}
 			if (isfound == false) {
 				System.out.println("Not found");
 			}
+		}
 	}
 
 	

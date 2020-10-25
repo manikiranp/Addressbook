@@ -3,20 +3,20 @@ import java.util.*;
 
 public class AddressBookManagerImp implements AddressBookManagerInterface {
 	static ArrayList<ArrayList<Person>> phonebooklist = new ArrayList<ArrayList<Person>>();
-	@Override
+	
+	Scanner n = new Scanner(System.in);
+
 	public void newAddressBook() {
-		ArrayList<Person> addressbook = new ArrayList<Person>();
-		Scanner n = new Scanner(System.in);
+
 		System.out.println("Enter New addressbook name");
-		String nam = n.nextLine();
-		phonebooklist.add(addressbook);
+		String ne = n.nextLine();
+		phonebooklist.add(ne);
 	
 	}
 
-	@Override
+
 	public void openAddressBook() {
-		// TODO Auto-generated method stub
-		
+		//AddressBookImp();
 	}
 
 	@Override
