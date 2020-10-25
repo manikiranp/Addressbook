@@ -19,6 +19,7 @@ public static void main(String[] args) {
 		int num = input.nextInt();
 		switch (num) {
 		case 1:
+			
 			addressbookmanager.newAddressBook();
 			break;
 		case 2:

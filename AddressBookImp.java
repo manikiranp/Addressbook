@@ -1,11 +1,13 @@
 package Phonebook;
 import java.util.Scanner;
+import java.io.FileWriter;
+//import com.opencsv.CSVWriter;
 
 
 import java.util.ArrayList;
 
 class AddressBookImp implements AddressBookInterface {
-	private static final String String = null;
+	
 	public  ArrayList<Person> addressbook;
 
 	public AddressBookImp() {
@@ -13,6 +15,7 @@ class AddressBookImp implements AddressBookInterface {
 	}
 	
 	public void addPerson() {
+		//CSVWriter writer = new CSVWriter(new FileWriter("D:\\Other\contact")); 
 	
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Enter the firstName:");
