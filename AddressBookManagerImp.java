@@ -1,7 +1,10 @@
 package Phonebook;
 import java.util.*;
+
+import javax.sound.sampled.Line;
+
 import java.io.*;
-import java.io.IOException;
+import java.io.BufferedReader;
 
 
 public class AddressBookManagerImp implements AddressBookManagerInterface {
@@ -29,7 +32,6 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 	}
 
 	public void openAddressBook() {
-		System.out.println("Select the addressbook");
 		File dir = new File("D:\\Other\\phonebook");
 		String[] files = dir.list();
 		if (files == null) {
@@ -39,9 +41,23 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 				String filename = files[i];
 				System.out.println(filename);
 			}
-		}
-	
+		} System.out.println("Enter the addressbook to open:");
+			
+			String cap = n.nextLine();
+			String line = "";  
+			String splitBy = ",";
+					try {
+						BufferedReader br = new BufferedReader(new FileReader("D:\\Other\\phonebook\\"+cap+".csv"));			
+						while ((line = br.readLine()) != null) {
+							String[] employee = line.split(splitBy);
+							System.out.println("FirstName=" + employee[0] + "\nLastName=" + employee[1] + "\nPhone=" + employee[2] + "\nCity=" + employee[3] + "\nState= " + employee[4] + "\nZipcode= " + employee[5]+ "\n" );
+						}
+					} catch (IOException e)   
+					{
+						e.printStackTrace();
+					}
 	}
+			
 
 	@Override
 	public void saveAddressBook() {

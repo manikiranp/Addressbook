@@ -5,7 +5,7 @@ public class AddressBook  {
 
 public static void main(String[] args) {
 	int cond=1;
-	Scanner input = new Scanner(System.in);
+	
 	while (cond == 1) {
 		AddressBookManagerImp addressbookmanager = new AddressBookManagerImp();
 		System.out.println("Address Book:"
@@ -16,7 +16,9 @@ public static void main(String[] args) {
 				+ "5) Close Addressbook"
 				+ "6) Quit");
 		System.out.println("Select an option: ");
+		Scanner input = new Scanner(System.in);
 		int num = input.nextInt();
+		
 		switch (num) {
 		case 1:
 			
