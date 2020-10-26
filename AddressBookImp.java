@@ -1,7 +1,7 @@
 package Phonebook;
 import java.util.Scanner;
 import java.io.FileWriter;
-//import com.opencsv.CSVWriter;
+import java.io.IOException;
 
 
 import java.util.ArrayList;
@@ -15,8 +15,7 @@ class AddressBookImp implements AddressBookInterface {
 	}
 	
 	public void addPerson() {
-		//CSVWriter writer = new CSVWriter(new FileWriter("D:\\Other\contact")); 
-	
+ 
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Enter the firstName:");
 		String firstName = inp.nextLine();

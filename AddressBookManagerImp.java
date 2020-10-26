@@ -1,6 +1,6 @@
 package Phonebook;
 import java.util.*;
-import java.io.File;
+import java.io.*;
 import java.io.IOException;
 
 
@@ -16,7 +16,7 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 		System.out.println("Enter new addressbook name:");
 		String nam = n.nextLine();
 		try {
-			File obj = new File("D:\\Other\\"+nam + ".csv");
+			File obj = new File("D:\\Other\\phonebook\\" +nam+ ".csv");
 			if (obj.createNewFile()) {
 				System.out.println("New Addressbook created: " + obj.getName()); 
 				} else {
@@ -29,7 +29,18 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 	}
 
 	public void openAddressBook() {
-		//AddressBookImp();
+		System.out.println("Select the addressbook");
+		File dir = new File("D:\\Other\\phonebook");
+		String[] files = dir.list();
+		if (files == null) {
+			System.out.println("Do not exist");
+		} else {
+			for (int i=0; i<files.length; i++) {
+				String filename = files[i];
+				System.out.println(filename);
+			}
+		}
+	
 	}
 
 	@Override
