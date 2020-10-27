@@ -2,12 +2,12 @@ package Phonebook;
 
 public class Person {
 	//attributes
-	  String firstname;  
-	  String lastname;
-	  String phonenumber;
-	  String city;
-	  String state;
-	  String zipcode;
+	  public String firstname;  
+	  public String lastname;
+	  public String phonenumber;
+	  public String city;
+	  public String state;
+	  public String zipcode;
 
 	  //constructor
 	  public Person(String firstname, String lastname, String phonenumber, String city, String state, String zipcode) {

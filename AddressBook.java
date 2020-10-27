@@ -8,12 +8,12 @@ public static void main(String[] args) {
 	
 	while (cond == 1) {
 		AddressBookManagerImp addressbookmanager = new AddressBookManagerImp();
-		System.out.println("Address Book:"
-				+ "1) Create new Addressbook"
-				+ "2) Open Addressbook"
-				+ "3) Save Addressbook"
-				+ "4) Saveas Addressbook"
-				+ "5) Close Addressbook"
+		System.out.println("Address Book:\n"
+				+ "1) Create new Addressbook\n"
+				+ "2) Open Addressbook\n"
+				+ "3) Save Addressbook\n"
+				+ "4) Saveas Addressbook\n"
+				+ "5) Close Addressbook\n"
 				+ "6) Quit");
 		System.out.println("Select an option: ");
 		Scanner input = new Scanner(System.in);
@@ -21,7 +21,6 @@ public static void main(String[] args) {
 		
 		switch (num) {
 		case 1:
-			
 			addressbookmanager.newAddressBook();
 			break;
 		case 2:

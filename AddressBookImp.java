@@ -1,21 +1,16 @@
 package Phonebook;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
-
-
+//import java.io.FileWriter;
+//import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator; 
 
 class AddressBookImp implements AddressBookInterface {
 	
-	public  ArrayList<Person> addressbook;
-
-	public AddressBookImp() {
-		addressbook = new ArrayList<Person>();
-	}
-	
+	public static ArrayList<Person> addressbook = new ArrayList<Person>();
+	 
 	public void addPerson() {
- 
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Enter the firstName:");
 		String firstName = inp.nextLine();
@@ -31,62 +26,74 @@ class AddressBookImp implements AddressBookInterface {
 		String zipcode = inp.nextLine();
 		Person p = new Person(firstName, lastName, phonenum, city, state, zipcode);
 		addressbook.add(p);
-
+//		System.out.println(addressbook);
 	}
 
 	
 	public void editPerson() {
-		Scanner n = new Scanner(System.in);
+		Scanner opt = new Scanner(System.in);
 		System.out.println("Enter firstname to update details");
-		String name = n.nextLine();
+		String name = opt.nextLine();
+		int i;
+		Person p;
 		boolean isfound = false;
-		for (int i=0; i<addressbook.size(); i++) {
-			String personName = addressbook.get(i).firstname;
-			if (name.equals(personName)) {
-				isfound = true;
-				System.out.println(""
-						+ "1) Phonenumber"
-						+ "2) city"
-						+ "3) state"
-						+ "4) zipcode"
+		for (i=0; i<addressbook.size(); i++) {
+			String firstName = addressbook.get(i).firstname;
+			String lastName = addressbook.get(i).lastname;
+			String phone = addressbook.get(i).phonenumber;
+			String city = addressbook.get(i).city;
+			String state = addressbook.get(i).state;
+			String zipcode = addressbook.get(i).zipcode;
+			if (name.equals(firstName)) {
+					isfound = true;
+					System.out.println("\"Select an option to edit:\n"
+						+ "1) Phonenumber\n"
+						+ "2) city\n"
+						+ "3) state\n"
+						+ "4) zipcode\n"
 						+ "5) Quit");
-				System.out.println("Select an option to edit: ");
-				int num = n.nextInt();
-				switch (num) {
+				int numb = opt.nextInt();
+				Scanner n = new Scanner(System.in);
+				switch (numb) {
 				case 1:
 				addressbook.remove(i);
 				System.out.println("Enter new value:");
-				String nu = n.nextLine();
-				Person p = new Person(name, addressbook.get(i).lastname, nu, addressbook.get(i).city, addressbook.get(i).state, addressbook.get(i).zipcode);
+				String phn = n.nextLine();
+				p = new Person(firstName, lastName, phn, city, state, zipcode);
 				addressbook.add(p);
+				System.out.println(addressbook);
 				break;
 				case 2:
-					addressbook.remove(i);
-					System.out.println("Enter new value:");
-					String n1 = n.nextLine();
-					Person p1 = new Person(name, addressbook.get(i).lastname, addressbook.get(i).phonenumber, n1, addressbook.get(i).state, addressbook.get(i).zipcode);
-					addressbook.add(p1);
-					break;
+				addressbook.remove(i);
+				System.out.println("Enter new value:");
+				String c = n.nextLine();
+				Person p1 = new Person(firstName, lastName, phone, c, state, zipcode);
+				addressbook.add(p1);
+				System.out.println(addressbook);
+				break;
 				case 3:
-					addressbook.remove(i);
-					System.out.println("Enter new value:");
-					String n2 = n.nextLine();
-					Person p2= new Person(name, addressbook.get(i).lastname, addressbook.get(i).phonenumber, addressbook.get(i).city, n2, addressbook.get(i).zipcode);
-					addressbook.add(p2);
-					break;
+				addressbook.remove(i);
+				System.out.println("Enter new value:");
+				String s = n.nextLine();
+				Person p2= new Person(firstName, lastName, phone, city, s, zipcode);
+				addressbook.add(p2);
+				System.out.println(addressbook);
+				break;
 				case 4:
-					addressbook.remove(i);
-					System.out.println("Enter new value:");
-					String n3 = n.nextLine();
-					Person p3 = new Person(name, addressbook.get(i).lastname, addressbook.get(i).phonenumber, addressbook.get(i).city, addressbook.get(i).state, n3);
-					addressbook.add(p3);
-					break;
+				addressbook.remove(i);
+				System.out.println("Enter new zipcode:");
+				String zip = n.nextLine();
+				Person p3 = new Person(firstName, lastName, phone, city, state, zip);
+				addressbook.add(p3);
+				System.out.println(addressbook);
+				break;
 				case 5:
-					break;
-				}
+				break;
+		}		System.out.println("updated details..\n");
+				System.out.println(addressbook);
 			}
 			if (isfound == false) {
-				System.out.println("Not found");
+				System.out.println("Name not found");
 			}
 		}
 	}
@@ -111,18 +118,14 @@ class AddressBookImp implements AddressBookInterface {
 		
 	}
 
-	@Override
-	public void sortbyName() {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
 
 	@Override
 	public void sortbyZip() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void searchPerson() {
 		// TODO Auto-generated method stub
@@ -133,6 +136,23 @@ class AddressBookImp implements AddressBookInterface {
 	public void searchPhonenumber() {
 		// TODO Auto-generated method stub
 		
+	}
+	public void display() {
+	System.out.println("Getting info");
+	
+//		for (Person person : addressbook) {
+//			System.out.println(person.toString());
+//			}
+//		
+//		Iterator i =addressbook.iterator();
+//	      System.out.println("The ArrayList elements are:");
+//	      while (i.hasNext()) {
+//	         System.out.println(i.next());
+//	      }
+		 for (int i=0; i<addressbook.size(); i++) {	
+			System.out.println(addressbook.get(i));
+			
+		}
 	}
 		
 	}
