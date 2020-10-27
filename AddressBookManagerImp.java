@@ -9,8 +9,8 @@ import java.io.BufferedReader;
 
 public class AddressBookManagerImp implements AddressBookManagerInterface {
 	
-	ArrayList<Person> addressbook;
-	static ArrayList<ArrayList<Person>> phonebooklist = new ArrayList<ArrayList<Person>>();
+	//ArrayList<Person> addressbook;
+	//static ArrayList<ArrayList<Person>> phonebooklist = new ArrayList<ArrayList<Person>>();
 	public AddressBookManagerImp( ) {
 	
 	}
