@@ -132,32 +132,55 @@ class AddressBookImp implements AddressBookInterface {
 		for (Person p : addressbook) 
 			System.out.println(p.toString());
 		}
-	@Override
+	
 	public void searchPerson() {
-		// TODO Auto-generated method stub
+		Scanner opt = new Scanner(System.in);
+		System.out.println("Enter firstname to search the details");
+		String name = opt.nextLine();
+		boolean found = false;
+		for (int i=0; i<addressbook.size(); i++) {
+			String firstName = addressbook.get(i).firstname;
+			if(name.equals(firstName)) {
+				found = true;
+				System.out.println(addressbook.get(i));
+			}
+			
+		} if (found == false)
+			System.out.println("Name not found");
 		
 	}
 
-	@Override
 	public void searchPhonenumber() {
-		// TODO Auto-generated method stub
-		
+		Scanner opt = new Scanner(System.in);
+		System.out.println("Enter phonenumber to search the details");
+		String name = opt.nextLine();
+		boolean found = false;
+		for (int i=0; i<addressbook.size(); i++) {
+			String phone = addressbook.get(i).phonenumber;
+			if(name.equals(phone)) {
+				found = true;
+				System.out.println(addressbook.get(i));
+			}
+			
+		} if (found == false)
+			System.out.println("Phonenumber not found");
 	}
+	
 	public void display() {
 	System.out.println("Getting info");	
-//		for (Person person : addressbook) {
-//			System.out.println(person.toString());
-//			}
+		for (Person person : addressbook) {
+			System.out.println(person.toString());
+			}
 //		
 //		Iterator i =addressbook.iterator();
 //	      System.out.println("The ArrayList elements are:");
 //	      while (i.hasNext()) {
 //	         System.out.println(i.next());
 //	      }
-		 for (int i=0; i<addressbook.size(); i++) {	
-			System.out.println(addressbook.get(i)+"\n");
-			
-		}
+//		 for (int i=0; i<addressbook.size(); i++) {	
+//			System.out.println(addressbook.get(i)+"\n");
+//			
+//		}
 	}
 		
 	}
