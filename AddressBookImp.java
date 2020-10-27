@@ -4,7 +4,7 @@ import java.util.Scanner;
 //import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator; 
+//import java.util.Iterator; 
 
 class AddressBookImp implements AddressBookInterface {
 	
@@ -117,15 +117,21 @@ class AddressBookImp implements AddressBookInterface {
 			}
 		
 	}
-
 	
-
-
-	@Override
-	public void sortbyZip() {
-		// TODO Auto-generated method stub
+	public void sortbyName() {
+		Collections.sort(addressbook, new NameComparator());
+		System.out.println("Sorted by Name");
+		for (Person p : addressbook) 
+			System.out.println(p.toString());
 		
 	}
+
+	public void sortbyZip() {
+		Collections.sort(addressbook, new ZipComparator());
+		System.out.println("Sorted by Zipcode:\n");
+		for (Person p : addressbook) 
+			System.out.println(p.toString());
+		}
 	@Override
 	public void searchPerson() {
 		// TODO Auto-generated method stub
@@ -138,8 +144,7 @@ class AddressBookImp implements AddressBookInterface {
 		
 	}
 	public void display() {
-	System.out.println("Getting info");
-	
+	System.out.println("Getting info");	
 //		for (Person person : addressbook) {
 //			System.out.println(person.toString());
 //			}
@@ -150,7 +155,7 @@ class AddressBookImp implements AddressBookInterface {
 //	         System.out.println(i.next());
 //	      }
 		 for (int i=0; i<addressbook.size(); i++) {	
-			System.out.println(addressbook.get(i));
+			System.out.println(addressbook.get(i)+"\n");
 			
 		}
 	}

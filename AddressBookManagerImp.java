@@ -84,8 +84,7 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 							menu.deletePerson();
 							break;
 						case 4:
-							//menu.sortbyName();
-							System.out.println("Error");
+							menu.sortbyName();
 							break;
 						case 5:
 							menu.sortbyZip();

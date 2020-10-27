@@ -20,7 +20,7 @@ public class Person {
 	  }
 	  
 	  public String toString() { 
-		 return "Name:"+firstname+ " " +lastname+ "Phone:" + phonenumber + "City:" + city + "State:" + state +"Zipcode:" + zipcode;
+		 return "Name:"+firstname+ "" +lastname+ ", Phone:" + phonenumber + ", City:" + city + ", State:" + state +", Zipcode:" + zipcode;
 	  }
 
 }
