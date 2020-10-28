@@ -1,19 +1,25 @@
 package Phonebook;
 import java.util.Scanner;
-//import java.io.FileWriter;
-//import java.io.IOException;
+
+import com.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 //import java.util.Iterator; 
-import java.util.Comparator;
+//import java.util.Comparator;
 
 class AddressBookImp implements AddressBookInterface {
 	
 	public static ArrayList<Person> addressbook = new ArrayList<Person>();
 	private Scanner inp;
 
-	 
+
 	public  void addPerson() {
+	
+		
 		inp = new Scanner(System.in);
 		System.out.println("Enter the firstName:");
 		String firstName = inp.nextLine();
@@ -30,19 +36,17 @@ class AddressBookImp implements AddressBookInterface {
 		Person p = new Person(firstName, lastName, phonenum, city, state, zipcode);
 		addressbook.add(p);
 		
+	
 	}
 
 	
 	public void editPerson() {
-		inp = new Scanner(System.in);
+		inp = new Scanner(System.in); int cond=1;
 		System.out.println("Enter firstname to update details");
 		String name = inp.nextLine();
-		boolean isfound = false;
-		//for (i=0; i<addressbook.size(); i++)
 		for (Person person : addressbook) {
-			System.out.println(person.toString());	
-			if (name.equals(person.firstname)) {
-					isfound = true;
+			if (name.equals(person.firstname)) { 
+				while (cond==1)  {
 					System.out.println("\"Select an option to edit:\n"
 						+ "1) Phonenumber\n"
 						+ "2) Address\n"						
@@ -51,33 +55,33 @@ class AddressBookImp implements AddressBookInterface {
 				inp = new Scanner(System.in);
 				switch (numb) {
 				case 1:
-				System.out.println("Enter new value:");
-				String phn = inp.nextLine();
-				person.setPhonenumber(phn);
-				break;
+					System.out.println("Enter new value:");
+					String phn = inp.nextLine();
+					person.setPhonenumber(phn);
+					break;
 				case 2:
-				System.out.println("Enter nee city:");
-				String city = inp.nextLine();
-				System.out.println("Enter new state:");
-				String state = inp.nextLine();
-				System.out.println("Enter new zipcode:");
-				String zipcode = inp.nextLine();
-				person.setCity(city);
-				person.setState(state);
-				person.setZipcode(zipcode);
-				break;
-				case 5:
-				break;
+					System.out.println("Enter new city:");
+					String city = inp.nextLine();
+					System.out.println("Enter new state:");
+					String state = inp.nextLine();
+					System.out.println("Enter new zipcode:");
+					String zipcode = inp.nextLine();
+					person.setCity(city);
+					person.setState(state);
+					person.setZipcode(zipcode);
+					break;
+				case 3:
+					cond = 0;
+					break;
 				default:
 					System.out.println("Wrong choice");
 					break;
-		}		
-				
+					}
+				}
 			}
-			if (isfound == false) {
-				System.out.println("Name not found");
+			else { 
+				System.out.println("Name not found"); }
 			}
-		}
 	}
 
 	
@@ -85,19 +89,16 @@ class AddressBookImp implements AddressBookInterface {
 		inp = new Scanner(System.in);
 		System.out.println("Enter firstname to delete its entries");
 		String name = inp.nextLine();
-		boolean isfound = false;
 		for (int i=0; i<addressbook.size(); i++) {
 			String personName = addressbook.get(i).firstname;
 			if (name.equals(personName)) {
-				isfound = true;
 				addressbook.remove(i);
 				System.out.println("Entry deleted");
 			}
-		}
-			if (isfound == false) {
-				System.out.println("Not found");
+			else  {
+				System.out.println("Name not found");
 			}
-		
+		}
 	}
 	
 	
@@ -120,33 +121,28 @@ class AddressBookImp implements AddressBookInterface {
 		inp = new Scanner(System.in);
 		System.out.println("Enter firstname to search the details");
 		String name = inp.nextLine();
-		boolean found = false;
-		for (int i=0; i<addressbook.size(); i++) {
-			String firstName = addressbook.get(i).firstname;
-			if(name.equals(firstName)) {
-				found = true;
-				System.out.println(addressbook.get(i));
+		for (Person person : addressbook) {
+			if(name.equals(person.firstname)) {
+				System.out.println(person.toString());
 			}
-			
-		} if (found == false)
+		 else {
 			System.out.println("Name not found");
-		
+		 }
+		}
 	}
 
 	public void searchPhonenumber() {
 		inp = new Scanner(System.in);
 		System.out.println("Enter phonenumber to search the details");
-		String name = inp.nextLine();
-		boolean found = false;
-		for (int i=0; i<addressbook.size(); i++) {
-			String phone = addressbook.get(i).phonenumber;
-			if(name.equals(phone)) {
-				found = true;
-				System.out.println(addressbook.get(i));
-			}
-			
-		} if (found == false)
+		String phone = inp.nextLine();
+		for (Person person : addressbook) {
+			if(phone.equals(person.phonenumber)) {
+				System.out.println(person.toString());
+			}	
+			else {
 			System.out.println("Phonenumber not found");
+			}
+		}
 	}
 	
 	public void display() {
@@ -160,10 +156,7 @@ class AddressBookImp implements AddressBookInterface {
 //	      while (i.hasNext()) {
 //	         System.out.println(i.next());
 //	      }
-//		 for (int i=0; i<addressbook.size(); i++) {	
-//			System.out.println(addressbook.get(i)+"\n");
-//			
-//		}
+		
 	}
 		
 	}

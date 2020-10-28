@@ -3,18 +3,17 @@ import java.util.*;
 
 import javax.sound.sampled.Line;
 
+import com.opencsv.CSVWriter;
+
 import java.io.*;
-import java.io.BufferedReader;
 
 
 public class AddressBookManagerImp implements AddressBookManagerInterface {
 	
-	//ArrayList<Person> addressbook;
-	//static ArrayList<ArrayList<Person>> phonebooklist = new ArrayList<ArrayList<Person>>();
-	public AddressBookManagerImp( ) {
-	
-	}
+	public static ArrayList<Person> addressbook = new ArrayList<Person>();
 	Scanner n = new Scanner(System.in);
+	private Scanner input;
+	String cap;
 
 	public void newAddressBook() {
 		System.out.println("Enter new addressbook name:");
@@ -33,17 +32,21 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 	}
 
 	public void openAddressBook() {
-//		File dir = new File("D:\\Other\\phonebook");
-//		String[] files = dir.list();
-//		if (files == null) {
-//			System.out.println("Do not exist");
-//		} else {
-//			for (int i=0; i<files.length; i++) {
-//				String filename = files[i];
-//				System.out.println(filename);
-//			}
-//		} 
-//		System.out.println("Enter the addressbook to open:");	
+		File dir = new File("D:\\Other\\phonebook");
+		String[] files = dir.list();
+		if (files == null) {
+			System.out.println("Do not exist");
+		} else {
+			for (int i=0; i<files.length; i++) {
+				String filename = files[i];
+				System.out.println(filename);
+			}
+		} 
+		System.out.println("Enter the addressbook to open:");
+		cap = n.nextLine();
+		String  filepath = ("D:\\Other\\phonebook\\"+cap+".csv");
+		
+		
 //			String cap = n.nextLine();
 //			String line = "";  
 //			String splitBy = ",";
@@ -57,6 +60,7 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 //					{
 //						e.printStackTrace();
 //					}
+		
 					int cond=1;
 					while (cond == 1) {
 						AddressBookImp menu = new AddressBookImp();
@@ -71,12 +75,13 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 								+ "8)display\n"
 								+ "9)quit");
 						System.out.println("Select an option from menu: ");
-						Scanner input = new Scanner(System.in);
+						input = new Scanner(System.in);
 						int num = input.nextInt();
 						switch (num) {
 						case 1:
 							menu.addPerson();
 							break;
+	
 						case 2:
 							menu.editPerson();
 							break;
@@ -108,9 +113,26 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 	}
 			
 
-	@Override
 	public void saveAddressBook() {
-		// TODO Auto-generated method stub
+		String  filepath = ("D:\\Other\\phonebook\\"+cap+".csv");
+		File file = new File(filepath);
+		try {
+			FileWriter outputfile = new FileWriter(file);
+			CSVWriter writer = new CSVWriter(outputfile);
+//			String[] header = {"FirstName", "Lastname", "Phone" };
+//			writer.writeNext(header);
+			List<String[]> data = new ArrayList<String[]>();
+			int i=0;
+			for (i=0; i<AddressBookImp.addressbook.size(); i++)
+				for (Person person : addressbook) {
+			data.add(new String[] { person.firstname, person.lastname, person.city });
+				writer.writeAll(data);		
+				writer.close();
+				}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
