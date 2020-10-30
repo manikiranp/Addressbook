@@ -1,10 +1,7 @@
 package Phonebook;
 import java.util.*;
-
 import javax.sound.sampled.Line;
-
 import com.opencsv.CSVWriter;
-
 import java.io.*;
 
 
@@ -18,6 +15,7 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 	public void newAddressBook() {
 		System.out.println("Enter new addressbook name:");
 		String nam = n.nextLine();
+		
 		try {
 			File obj = new File("D:\\Other\\phonebook\\" +nam+ ".csv");
 			if (obj.createNewFile()) {
@@ -32,6 +30,7 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 	}
 
 	public void openAddressBook() {
+		
 		File dir = new File("D:\\Other\\phonebook");
 		String[] files = dir.list();
 		if (files == null) {
@@ -44,98 +43,130 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 		} 
 		System.out.println("Enter the addressbook to open:");
 		cap = n.nextLine();
-		String  filepath = ("D:\\Other\\phonebook\\"+cap+".csv");
-		
-		
-//			String cap = n.nextLine();
-//			String line = "";  
-//			String splitBy = ",";
-//					try {
-//					BufferedReader br = new BufferedReader(new FileReader("D:\\Other\\phonebook\\"+cap+".csv"));			
-//						while ((line = br.readLine()) != null) {
-//						String[] c = line.split(splitBy);
-//						System.out.println("FirstName:" + c[0] + "\nLastName:" + c[1] + "\nPhone:" + c[2] + "\nCity:" + c[3] + "\nState:" + c[4] + "\nZipcode:" + c[5]+ "\n" );
-//						}
-//					}catch (IOException e)   
-//					{
-//						e.printStackTrace();
-//					}
-		
-					int cond=1;
-					while (cond == 1) {
-						AddressBookImp menu = new AddressBookImp();
-						System.out.println("Address Book:\n"
-								+ "1) Add Person\n"
-								+ "2) Edit Person\n"
-								+ "3) Delete Person\n"
-								+ "4) Sort by name\n"
-								+ "5) Sort by zip\n"
-								+ "6) Search Person\n"
-								+ "7)Search Phonenumber\n"
-								+ "8)display\n"
-								+ "9)quit");
-						System.out.println("Select an option from menu: ");
-						input = new Scanner(System.in);
-						int num = input.nextInt();
-						switch (num) {
-						case 1:
-							menu.addPerson();
-							break;
-	
-						case 2:
-							menu.editPerson();
-							break;
-						case 3:
-							menu.deletePerson();
-							break;
-						case 4:
-							menu.sortbyName();
-							break;
-						case 5:
-							menu.sortbyZip();
-							break;
-						case 6:
-							menu.searchPerson();
-							break;
-						case 7:
-							menu.searchPhonenumber();
-							break;
-						case 8:
-							menu.display();
-							break;
-						case 9:
-							cond =0;
-							break;
-						default:
-							System.out.println("Incorrect Choice");
-						}
+		for (String f : files) {
+			if (f.equals(cap+".csv")) {
+//				System.out.println("file found");
+				int cond=1;
+				while (cond == 1) {
+					AddressBookImp menu = new AddressBookImp();
+					System.out.println("Address Book:"+cap+"\n"
+							+ "1) Add Person\n"
+							+ "2) Edit Person\n"
+							+ "3) Delete Person\n"
+							+ "4) Sort by name\n"
+							+ "5) Sort by zip\n"
+							+ "6) Search Person\n"
+							+ "7)Search Phonenumber\n"
+							+ "8)display\n"
+							+ "9)quit");
+					System.out.println("Select an option from menu: ");
+					input = new Scanner(System.in);
+					int num = input.nextInt();
+					switch (num) {
+					case 1:
+						menu.addPerson();
+						break;
+					case 2:
+						menu.editPerson();
+						break;
+					case 3:
+						menu.deletePerson();
+						break;
+					case 4:
+						menu.sortbyName();
+						break;
+					case 5:
+						menu.sortbyZip();
+						break;
+					case 6:
+						menu.searchPerson();
+						break;
+					case 7:
+						menu.searchPhonenumber();
+						break;
+					case 8:
+						menu.display();
+						break;
+					case 9:
+						cond =0;
+						break;
+					default:
+						System.out.println("Incorrect Choice");
 					}
+				}
+			}
+			else 
+				System.out.println("file not found");
+				break;
+			
+		}
+		//String filepath = ("D:\\Other\\phonebook\\"+cap+".csv");
+		
+		
+//					int cond=1;
+//					while (cond == 1) {
+//						AddressBookImp menu = new AddressBookImp();
+//						System.out.println("Address Book:"+cap+"\n"
+//								+ "1) Add Person\n"
+//								+ "2) Edit Person\n"
+//								+ "3) Delete Person\n"
+//								+ "4) Sort by name\n"
+//								+ "5) Sort by zip\n"
+//								+ "6) Search Person\n"
+//								+ "7)Search Phonenumber\n"
+//								+ "8)display\n"
+//								+ "9)quit");
+//						System.out.println("Select an option from menu: ");
+//						input = new Scanner(System.in);
+//						int num = input.nextInt();
+//						switch (num) {
+//						case 1:
+//							menu.addPerson();
+//							break;
+//						case 2:
+//							menu.editPerson();
+//							break;
+//						case 3:
+//							menu.deletePerson();
+//							break;
+//						case 4:
+//							menu.sortbyName();
+//							break;
+//						case 5:
+//							menu.sortbyZip();
+//							break;
+//						case 6:
+//							menu.searchPerson();
+//							break;
+//						case 7:
+//							menu.searchPhonenumber();
+//							break;
+//						case 8:
+//							menu.display();
+//							break;
+//						case 9:
+//							cond =0;
+//							break;
+//						default:
+//							System.out.println("Incorrect Choice");
+//						}
+//					}
 	}
 			
 
 	public void saveAddressBook() {
-		String  filepath = ("D:\\Other\\phonebook\\"+cap+".csv");
-		File file = new File(filepath);
 		try {
-			FileWriter outputfile = new FileWriter(file);
-			CSVWriter writer = new CSVWriter(outputfile);
-//			String[] header = {"FirstName", "Lastname", "Phone" };
-//			writer.writeNext(header);
-			List<String[]> data = new ArrayList<String[]>();
-			int i=0;
-			for (i=0; i<AddressBookImp.addressbook.size(); i++)
-				for (Person person : addressbook) {
-			data.add(new String[] { person.firstname, person.lastname, person.city });
-				writer.writeAll(data);		
-				writer.close();
-				}
-		}
+			 FileOutputStream writeData = new FileOutputStream("D:\\Other\\phonebook\\"+cap+".csv");
+			    ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+			    writeStream.writeObject(addressbook);
+			    writeStream.flush();
+			    writeStream.close();
+	}	 
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
-
 	@Override
 	public void saveAsAddressBook() {
 		// TODO Auto-generated method stub
