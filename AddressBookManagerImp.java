@@ -1,16 +1,19 @@
 package Phonebook;
 import java.util.*;
-import javax.sound.sampled.Line;
+import java.util.stream.Collectors;
+
 import com.opencsv.CSVWriter;
+
 import java.io.*;
 
 
 public class AddressBookManagerImp implements AddressBookManagerInterface {
 	
-	public static ArrayList<Person> addressbook = new ArrayList<Person>();
+	//public static ArrayList<Person> addressbook = new ArrayList<Person>();
 	Scanner n = new Scanner(System.in);
 	private Scanner input;
 	String cap;
+	private static final String CSV_HEADER = "firstname,lastname,phonenumber,city,state,zipcode";
 
 	public void newAddressBook() {
 		System.out.println("Enter new addressbook name:");
@@ -43,8 +46,9 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 		} 
 		System.out.println("Enter the addressbook to open:");
 		cap = n.nextLine();
-		for (String f : files) {
-			if (f.equals(cap+".csv")) {
+//		for (int i=0; i<files.length; i++) {
+//			String filename = files[i];
+//			if (filename.equals(cap+".csv")) {
 //				System.out.println("file found");
 				int cond=1;
 				while (cond == 1) {
@@ -95,75 +99,50 @@ public class AddressBookManagerImp implements AddressBookManagerInterface {
 					}
 				}
 			}
-			else 
-				System.out.println("file not found");
-				break;
+//			else 
+//				System.out.println("file not found");
+//				break;
 			
-		}
-		//String filepath = ("D:\\Other\\phonebook\\"+cap+".csv");
-		
-		
-//					int cond=1;
-//					while (cond == 1) {
-//						AddressBookImp menu = new AddressBookImp();
-//						System.out.println("Address Book:"+cap+"\n"
-//								+ "1) Add Person\n"
-//								+ "2) Edit Person\n"
-//								+ "3) Delete Person\n"
-//								+ "4) Sort by name\n"
-//								+ "5) Sort by zip\n"
-//								+ "6) Search Person\n"
-//								+ "7)Search Phonenumber\n"
-//								+ "8)display\n"
-//								+ "9)quit");
-//						System.out.println("Select an option from menu: ");
-//						input = new Scanner(System.in);
-//						int num = input.nextInt();
-//						switch (num) {
-//						case 1:
-//							menu.addPerson();
-//							break;
-//						case 2:
-//							menu.editPerson();
-//							break;
-//						case 3:
-//							menu.deletePerson();
-//							break;
-//						case 4:
-//							menu.sortbyName();
-//							break;
-//						case 5:
-//							menu.sortbyZip();
-//							break;
-//						case 6:
-//							menu.searchPerson();
-//							break;
-//						case 7:
-//							menu.searchPhonenumber();
-//							break;
-//						case 8:
-//							menu.display();
-//							break;
-//						case 9:
-//							cond =0;
-//							break;
-//						default:
-//							System.out.println("Incorrect Choice");
-//						}
-//					}
-	}
-			
+//		}
+//		
+//	}
+//			
 
 	public void saveAddressBook() {
+		
+		 FileWriter writer = null;
 		try {
-			 FileOutputStream writeData = new FileOutputStream("D:\\Other\\phonebook\\"+cap+".csv");
-			    ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
-			    writeStream.writeObject(addressbook);
-			    writeStream.flush();
-			    writeStream.close();
+			
+			writer = new FileWriter("contacts.csv");
+			writer.append(CSV_HEADER);
+			writer.append("\n");
+			for (Person p : AddressBookImp.addressbook) {
+				writer.append(p.getFirstname());
+				writer.append(",");
+				writer.append(p.getLastname());
+				writer.append(",");
+				writer.append(p.getPhonenumber());
+				writer.append(",");
+				writer.append(p.getCity());
+				writer.append(",");
+				writer.append(p.getState());
+				writer.append(",");
+				writer.append(p.getZipcode());
+				writer.append("\n");
+			}
+			System.out.println("data saved.");
 	}	 
 		catch (IOException e) {
+			System.out.println("Writing CSV error!");
 			e.printStackTrace();
+		} finally {
+			try {
+		    writer.flush();
+		    writer.close();
+			} catch (IOException e) {
+		        System.out.println("Flushing/closing error!");
+		        e.printStackTrace();
+		      }
 		}
 		
 	}
